@@ -1,11 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ThemeService } from '../../services/theme.service';
+
 
 @Component({
   selector: 'app-header',
-  imports: [],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
 
+  public theme_Service = inject(ThemeService);
+
+  toggleTheme() {
+    this.theme_Service.toggleTheme();
+  }
+
+  get currentTheme() {
+    return this.theme_Service.getTheme();
+  }
 }
