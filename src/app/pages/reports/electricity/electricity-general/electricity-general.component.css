@@ -1,0 +1,10 @@
+.wrapper {
+  width: 100%;
+  display: block;
+  /* position: relative; */
+  margin-top: 150px;
+  margin-left: 350px;
+  max-width: 1125px;
+  min-height: 60rem;
+}
+

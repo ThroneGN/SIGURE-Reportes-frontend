@@ -1,0 +1,62 @@
+<div class="wrapper">
+  <div class="container">
+    <header class="title mt-4">
+      <h4 class="">Consumo de elcetricidad</h4>
+    </header>
+  </div>
+
+  <div class="card mt-5">
+    <p-table #dt1 [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+      selectionMode="single" dataKey="id" [tableStyle]="{ 'min-width': '50rem' }" [rows]="5" [paginator]="true"
+      stateStorage="session" stateKey="statedemo-session">
+
+      <ng-template #caption>
+
+        <div class="d-flex align-items-center gap-5">
+          <p-iconfield iconPosition="left">
+            <p-inputicon>
+              <i class="pi pi-search"></i>
+            </p-inputicon>
+            <input pInputText type="text" (input)="dt1.filterGlobal(searchValue, 'contains')" placeholder="Buscar..." />
+          </p-iconfield>
+
+          <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" />
+        </div>
+
+        <div class="d-flex justify-content-end gap-4 mb-3" style="margin-top: -40px;">
+          <p-button icon="pi pi-external-link" label="Exportar a PDF" />
+          <p-button icon="pi pi-external-link" label="Exportar a XLS" />
+        </div>
+
+      </ng-template>
+      <ng-template #header>
+        <tr>
+          <th pSortableColumn="name" style="width:12%">Provincia <p-sortIcon field="name" /></th>
+          <th pSortableColumn="country.name" style="width:12%">
+            Plan Diario <p-sortIcon field="country.name" />
+          </th>
+          <th pSortableColumn="representative.name" style="width:12%">
+            Real Diario <p-sortIcon field="representative.name" />
+          </th>
+          <th pSortableColumn="status" style="width:12.5%">Plan Pico Nocturno <p-sortIcon field="status" /></th>
+          <th pSortableColumn="a" style="width:15%">Real Diario Pico Nocturno <p-sortIcon field="a" /></th>
+          <th pSortableColumn="b" style="width:12.5%">Real Día Acumulado <p-sortIcon field="b" /></th>
+          <th pSortableColumn="c" style="width:10%">Perdidas Diarias <p-sortIcon field="c" /></th>
+          <th pSortableColumn="d" style="width:12.5%">Perdidas Acumuladas <p-sortIcon field="d" /></th>
+
+        </tr>
+      </ng-template>
+      <ng-template #body let-customer>
+
+      </ng-template>
+      <ng-template #body let-customer>
+
+      </ng-template>
+      <ng-template emptymessage>
+        <tr>
+          <td colspan="4">Sin resultados.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
