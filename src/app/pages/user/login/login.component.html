@@ -22,6 +22,8 @@
           </svg>
           <input
             required=""
+            oninvalid="this.setCustomValidity('Este campo no puede estar vacío')"
+            oninput="this.setCustomValidity('')"
             placeholder="Usuario"
             class="form-input"
             type="text"
@@ -41,6 +43,8 @@
           <input
             [type]="isPasswordVisible ? 'text' : 'password'"
             required=""
+            oninvalid="this.setCustomValidity('Este campo no puede estar vacío')"
+            oninput="this.setCustomValidity('')"
             placeholder="Contraseña"
             class="form-input"
           />
