@@ -8,8 +8,9 @@ export class ThemeService {
 
   constructor() {
     if (typeof window !== 'undefined') {
-      const savedTheme = localStorage.getItem('theme');
+      const savedTheme = localStorage.getItem('theme') || 'light';
       this.theme = savedTheme ? savedTheme : this.theme;
+      this.setTheme(this.theme)
       this.applyTheme();
     }
   }
@@ -19,12 +20,14 @@ export class ThemeService {
     if (typeof window !== 'undefined') {
       localStorage.setItem('theme', theme);
     }
+    document.documentElement.classList.toggle('app-dark', theme === 'dark');
     this.applyTheme();
   }
 
   toggleTheme() {
     this.theme = this.theme === 'light' ? 'dark' : 'light';
     this.setTheme(this.theme);
+    // document.documentElement.classList.toggle('app-dark', this.theme === 'dark');
   }
 
   private applyTheme() {

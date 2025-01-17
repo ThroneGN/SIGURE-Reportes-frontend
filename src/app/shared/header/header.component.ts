@@ -18,4 +18,9 @@ export class HeaderComponent {
   get currentTheme() {
     return this.theme_Service.getTheme();
   }
+
+  toggleDarkMode() {
+    const element = document.querySelector('html');
+    element!.classList.toggle('my-app-dark');
+}
 }

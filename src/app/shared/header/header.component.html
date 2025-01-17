@@ -38,7 +38,7 @@
           <hr class="d-lg-none my-2 text-white-50" />
         </li>
 
-        <li class="nav-item dropdown" data-bs-theme="light">
+        <li class="nav-item dropdown" [attr.data-bs-theme]="currentTheme">
           <a class="nav-link dropdown-toggle d-flex align-items-center" id="version-menu" aria-expanded="false"
             data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme">
             <i class="bi bi-person-circle" style="font-size: 2rem"></i><span class="ms-2"></span>
@@ -53,7 +53,7 @@
             <li>
               <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"
                 aria-pressed="true">
-                <i class="bi bi-box-arrow-left"></i><span class="ms-2">Cerrar sesión</span>
+                <i class="bi bi-box-arrow-left" style="margin-left: -1.5px;"></i><span class="ms-2">Cerrar sesión</span>
               </button>
             </li>
           </ul>
