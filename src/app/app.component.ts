@@ -1,15 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, LOCALE_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { SignUpComponent } from './pages/user/sign-up/sign-up.component';
+
+import {TranslateModule} from "@ngx-translate/core";   // <--- standalone only
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-root',
-  imports: [HeaderComponent, RouterOutlet, FooterComponent],
+  imports: [HeaderComponent, RouterOutlet, FooterComponent, TranslateModule],
+  providers:[{ provide: LOCALE_ID, useValue: 'es' }],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'SIGURE_Reportes';
+
+  constructor(private translate: TranslateService) {
+    this.translate.addLangs(['es', 'en']);
+    this.translate.setDefaultLang('es');
+    this.translate.use('es');
+  }
 }

@@ -33,30 +33,9 @@ export class ElectricityGeneralComponent implements OnInit {
 
   exportColumns!: [];
 
-
   ngOnInit(): void {
   }
 
-  getSeverity(status: string) {
-    switch (status) {
-        case 'unqualified':
-            return 'danger';
 
-        case 'qualified':
-            return 'success';
-
-        case 'new':
-            return 'info';
-
-        case 'negotiation':
-            return 'warning';
-
-        case 'renewal':
-            return null;
-
-        default:
-            return null;
-    }
-}
 
 }
