@@ -6,21 +6,22 @@
   </div>
 
   <div class="card mt-5">
-    <p-table #dt1 [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
-      selectionMode="single" dataKey="id" [tableStyle]="{ 'min-width': '50rem' }" [rows]="5" [paginator]="true"
+    <p-table #ElectricityGeneral selectionMode="single" [value]="listElectricity " dataKey="id" [paginator]="true"
+      [rows]="5" [rowsPerPageOptions]="[5, 10, 20, 50]" [loading]="loading" [tableStyle]="{ 'min-width': '50rem' }"
+      [globalFilterFields]="['PlanDiario', 'RealDia', 'PlanPicoNocturno', 'RealDiaPicoNoct', 'RealDiaAcum', 'PerdidasDia', 'PerdidasAcum']"
       stateStorage="session" stateKey="statedemo-session">
 
       <ng-template #caption>
-
         <div class="d-flex align-items-center gap-5">
           <p-iconfield iconPosition="left">
             <p-inputicon>
               <i class="pi pi-search"></i>
             </p-inputicon>
-            <input pInputText type="text" (input)="dt1.filterGlobal(searchValue, 'contains')" placeholder="Buscar..." />
+            <input type="text" [(ngModel)]="searchValue"
+              (input)="ElectricityGeneral.filterGlobal(searchValue, 'contains')" />
           </p-iconfield>
-
-          <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay"/>
+          <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay"
+            dateFormat="dd/mm/yy"></p-datepicker>
         </div>
 
         <div class="d-flex justify-content-end gap-4 mb-3" style="margin-top: -40px;">
@@ -31,32 +32,37 @@
       </ng-template>
       <ng-template #header>
         <tr>
-          <th pSortableColumn="name" style="width:12%">Provincia <p-sortIcon field="name" /></th>
-          <th pSortableColumn="country.name" style="width:12%">
-            Plan Diario <p-sortIcon field="country.name" />
+          <th pSortableColumn="PlanDiario" style="width:12%">Plan Diario <p-sortIcon field="PlanDiario" /></th>
+          <th pSortableColumn="RealDia" style="width:12%">Real Diario <p-sortIcon field="RealDia" /></th>
+          <th pSortableColumn="PlanPicoNocturno" style="width:12.5%">Plan Pico Nocturno <p-sortIcon
+              field="PlanPicoNocturno" /></th>
+          <th pSortableColumn="RealDiaPicoNoct" style="width:15%">Real Diario Pico Nocturno <p-sortIcon
+              field="RealDiaPicoNoct" /></th>
+          <th pSortableColumn="RealDiaAcum" style="width:12.5%">Real Día Acumulado <p-sortIcon field="RealDiaAcum" />
           </th>
-          <th pSortableColumn="representative.name" style="width:12%">
-            Real Diario <p-sortIcon field="representative.name" />
+          <th pSortableColumn="PerdidasDia" style="width:10%">Perdidas Diarias <p-sortIcon field="PerdidasDia" /></th>
+          <th pSortableColumn="PerdidasAcum" style="width:12.5%">Perdidas Acumuladas <p-sortIcon field="PerdidasAcum" />
           </th>
-          <th pSortableColumn="status" style="width:12.5%">Plan Pico Nocturno <p-sortIcon field="status" /></th>
-          <th pSortableColumn="a" style="width:15%">Real Diario Pico Nocturno <p-sortIcon field="a" /></th>
-          <th pSortableColumn="b" style="width:12.5%">Real Día Acumulado <p-sortIcon field="b" /></th>
-          <th pSortableColumn="c" style="width:10%">Perdidas Diarias <p-sortIcon field="c" /></th>
-          <th pSortableColumn="d" style="width:12.5%">Perdidas Acumuladas <p-sortIcon field="d" /></th>
-
         </tr>
       </ng-template>
-      <ng-template #body let-customer>
 
-      </ng-template>
-      <ng-template #body let-customer>
-
-      </ng-template>
-      <ng-template emptymessage>
+      <ng-template #body let-electricity>
         <tr>
-          <td colspan="4">Sin resultados.</td>
+          <td>{{ electricity.PlanDiario }}</td>
+          <td>{{ electricity.RealDia }}</td>
+          <td>{{ electricity.PlanPicoNocturno }}</td>
+          <td>{{ electricity.RealDiaPicoNoct }}</td>
+          <td>{{ electricity.RealDiaAcum }}</td>
+          <td>{{ electricity.PerdidasDia }}</td>
+          <td>{{ electricity.PerdidasAcum }}</td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td class="text-center" colspan="7" id="sinResultados">No se encuentran resultados.</td>
         </tr>
       </ng-template>
     </p-table>
-  </div>
+  </div>  
 </div>

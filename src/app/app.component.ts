@@ -15,10 +15,4 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class AppComponent {
   title = 'SIGURE_Reportes';
-
-  constructor(private translate: TranslateService) {
-    this.translate.addLangs(['es', 'en']);
-    this.translate.setDefaultLang('es');
-    this.translate.use('es');
-  }
 }
