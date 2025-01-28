@@ -16,6 +16,35 @@
   }
 }
 
+/* Estilos para el acordeón y los elementos de la lista */
+.accordion-button {
+  transition: background-color 0.3s; /* Transición suave */
+}
+
+.accordion-button:hover {
+  background-color: #3399ff; /* Color de fondo al pasar el mouse */
+}
+
+.custom-list-item {
+  transition: background-color 0.3s, transform 0.3s; /* Transición suave */
+  border: none; /* Sin borde */
+}
+
+.custom-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Color de fondo al pasar el mouse */
+  transform: scale(1.02); /* Efecto de aumento al pasar el mouse */
+}
+
+.list-group-item {
+  display: flex; /* Usar flexbox para centrar el contenido */
+  justify-content: center; /* Centrar horizontalmente */
+}
+
+.btn-info {
+  width: 100%; /* Hacer que todos los botones tengan el mismo ancho */
+}
+
+
 
 
 

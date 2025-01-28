@@ -1,35 +1,50 @@
 <div class="wrapper">
   <div class="container">
-    <header class="title mt-4">
-      <h4 class="">Consumo de elcetricidad</h4>
+    <header class="title mb-5" style="margin-top: -15px;">
+      <h4>Consumo de electricidad</h4>
     </header>
   </div>
 
-  <div class="card mt-5">
+  <!-- <label class="me-2 ms-1" for="fechaIniInput">Fecha Inicio: </label> -->
+  <!-- <input id="fechaIniInput" type="text" [(ngModel)]="fechaIni" (input)="updateUrl()" placeholder="Escribe la Fecha Inicio" /> -->
+
+  <!-- <label class="me-2 ms-1" for="fechaFinInput">Fecha Fin: </label> -->
+  <!-- <input id="fechaFinInput" type="text" [(ngModel)]="fechaFin" (input)="updateUrl()" placeholder="Escribe la Fecha Fin" /> -->
+
+  <label class="me-2 ms-1" for="">Desde: </label>
+  <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" dateFormat="yy-mm-dd"
+    [(ngModel)]="startDate" (ngModelChange)="onDateChange()"></p-datepicker>
+
+  <label class="me-2 ms-5" for="">Hasta: </label>
+  <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" dateFormat="yy-mm-dd"
+    [(ngModel)]="endDate" (ngModelChange)="onDateChange()"></p-datepicker>
+
+  <div class="card mt-4">
     <p-table #ElectricityGeneral selectionMode="single" [value]="listElectricity " dataKey="id" [paginator]="true"
       [rows]="5" [rowsPerPageOptions]="[5, 10, 20, 50]" [loading]="loading" [tableStyle]="{ 'min-width': '50rem' }"
-      [globalFilterFields]="['PlanDiario', 'RealDia', 'PlanPicoNocturno', 'RealDiaPicoNoct', 'RealDiaAcum', 'PerdidasDia', 'PerdidasAcum']"
-      stateStorage="session" stateKey="statedemo-session">
+      [globalFilterFields]="['PlanDiario', 'RealDia', 'PlanPicoNocturno', 'RealDiaPicoNoct', 'RealDiaAcum', 'PerdidasDia', 'PerdidasAcum']">
 
       <ng-template #caption>
-        <div class="d-flex align-items-center gap-5">
-          <p-iconfield iconPosition="left">
-            <p-inputicon>
-              <i class="pi pi-search"></i>
-            </p-inputicon>
-            <input type="text" [(ngModel)]="searchValue"
-              (input)="ElectricityGeneral.filterGlobal(searchValue, 'contains')" />
-          </p-iconfield>
-          <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay"
-            dateFormat="dd/mm/yy"></p-datepicker>
+        <div class="d-flex align-items-center gap-5" style="position: relative;">
+          <div style="position: absolute; top: 0px;">
+            <p-iconfield iconPosition="left" class="ml-auto">
+              <p-inputicon>
+                <i class="pi pi-search"></i>
+              </p-inputicon>
+              <input pInputText type="text" [(ngModel)]="searchValue"
+                (input)="ElectricityGeneral.filterGlobal(searchValue, 'contains')" placeholder="Buscar..." />
+                <p-button type="button" icon="pi pi-refresh" (click)="clear()" text />
+            </p-iconfield>
+          </div>
         </div>
 
-        <div class="d-flex justify-content-end gap-4 mb-3" style="margin-top: -40px;">
+        <div class="d-flex justify-content-end gap-4 mb-2">
           <p-button icon="pi pi-external-link" label="Exportar a PDF" />
           <p-button icon="pi pi-external-link" label="Exportar a XLS" />
         </div>
 
       </ng-template>
+
       <ng-template #header>
         <tr>
           <th pSortableColumn="PlanDiario" style="width:12%">Plan Diario <p-sortIcon field="PlanDiario" /></th>
@@ -64,5 +79,5 @@
         </tr>
       </ng-template>
     </p-table>
-  </div>  
+  </div>
 </div>

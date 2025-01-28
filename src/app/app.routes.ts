@@ -12,7 +12,7 @@ export const routes: Routes = [
   },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'electricidadgeneral/:FechaIni/:FechaFin', component: ElectricityGeneralComponent },
+  { path: 'electricityGeneral/:InitDate/:FinalDate', component: ElectricityGeneralComponent },
   {
     path: '',
     redirectTo: 'home',

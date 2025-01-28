@@ -20,7 +20,7 @@ import localeEs from '@angular/common/locales/es';
 import { Electricity } from '../../../../interfaces/electricity';
 import { ElectricityGeneralService } from '../../../../services/electricity/electricity-general.service';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 registerLocaleData(localeEs);
 
@@ -37,6 +37,7 @@ export class ElectricityGeneralComponent implements OnInit {
 
   private _electricityService: ElectricityGeneralService = inject(ElectricityGeneralService);
   private _activatedRoute: ActivatedRoute = inject(ActivatedRoute);
+  private _router: Router = inject(Router);
 
   loading: boolean = false;
   listElectricity: Electricity[] = [];
@@ -45,15 +46,19 @@ export class ElectricityGeneralComponent implements OnInit {
   InitDate: string = '';
   FinalDate: string = '';
 
-  ngOnInit(): void {
-    this.InitDate = this._activatedRoute.snapshot.paramMap.get('FechaIni')!;
-    this.FinalDate = this._activatedRoute.snapshot.paramMap.get('FechaFin')!;
+  startDate: string = '';
+  endDate: string = '';
 
-    if (this.InitDate && this.FinalDate) {
-        this.getAllElectricity(this.InitDate, this.FinalDate);
-    } else {
-        console.error('Fechas no válidas:', this.InitDate, this.FinalDate);
-    }
+  filteredElectricity: any[] = [];
+
+  urlInput: string = '';
+
+
+  ngOnInit(): void {
+    this.InitDate = this._activatedRoute.snapshot.paramMap.get('InitDate')!;
+    this.FinalDate = this._activatedRoute.snapshot.paramMap.get('FinalDate')!;
+
+    this.getAllElectricity(this.InitDate, this.FinalDate);
   }
 
   getAllElectricity(InitDate: string, FinalDate: string): void {
@@ -64,10 +69,23 @@ export class ElectricityGeneralComponent implements OnInit {
     });
   }
 
+  updatePage(){
+    location.reload();
+  }
+
+  onDateChange() {
+    if (this.startDate && this.endDate) {
+      const newUrl = `electricidadgeneral/${this.startDate}/${this.endDate}`;
+      history.pushState(null, '', newUrl);
+      this._router.navigateByUrl(newUrl);
+    }
+  }
+
   clear() {
     this.table.clear();
     this.table.reset();
-    window.location.reload();
+    this.searchValue = '';
+    // window.location.reload();
   }
 
   adjustDate(electricityConsumption: { Fecha: string | number | Date; }) {

@@ -20,12 +20,14 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
             <li>
-              <button type="button" class="dropdown-item d-flex align-items-center" (click)="theme_Service.setTheme('light')">
+              <button type="button" class="dropdown-item d-flex align-items-center"
+                (click)="theme_Service.setTheme('light')">
                 <i class="bi bi-sun-fill"></i><span class="ms-2">Claro</span>
               </button>
             </li>
             <li>
-              <button type="button" class="dropdown-item d-flex align-items-center" (click)="theme_Service.setTheme('dark')">
+              <button type="button" class="dropdown-item d-flex align-items-center"
+                (click)="theme_Service.setTheme('dark')">
                 <i class="bi bi-moon-stars-fill"></i><span class="ms-2">Oscuro</span>
               </button>
             </li>
@@ -63,7 +65,6 @@
   </div>
 </div>
 
-
 <div class="offcanvas offcanvas-start show" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
   id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel"
   style="top: 96px; height: calc(100% - 56px); width: 20%;">
@@ -79,18 +80,25 @@
             aria-controls="panelsStayOpen-collapseOne">
             Electricidad
           </button>
+          
         </h2>
-        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse"
-          aria-labelledby="panelsStayOpen-headingOne">
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
           <div class="accordion-body">
             <ul class="list-group">
-              <li class="list-group-item">
-                <button type="button" class="btn btn-info" routerLink="/electricidadgeneral/{{InitDate}}/{{FinalDate}}">Información general</button>
+              <li class="list-group-item custom-list-item">
+                <button type="button" class="btn btn-info"
+                  routerLink="/electricityGeneral/{{InitDate}}/{{FinalDate}}">Información general</button>
               </li>
-              <li class="list-group-item">
+              <li class="list-group-item custom-list-item">
+                <button type="button" class="btn btn-info">OACE</button>
+              </li>
+              <li class="list-group-item custom-list-item">
                 <button type="button" class="btn btn-info">OSDE</button>
               </li>
-              <li class="list-group-item">
+              <li class="list-group-item custom-list-item">
+                <button type="button" class="btn btn-info">Empresas</button>
+              </li>
+              <li class="list-group-item custom-list-item">
                 <button type="button" class="btn btn-info">Servicios</button>
               </li>
             </ul>
@@ -105,20 +113,27 @@
             Agua
           </button>
         </h2>
-        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
-          aria-labelledby="panelsStayOpen-headingTwo">
+
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
           <div class="accordion-body">
             <ul class="list-group">
-              <li class="list-group-item">
+              <li class="list-group-item custom-list-item">
                 <button type="button" class="btn btn-info">Información general</button>
               </li>
-              <li class="list-group-item">
+              <li class="list-group-item custom-list-item">
+                <button type="button" class="btn btn-info">OACE</button>
+              </li>
+              <li class="list-group-item custom-list-item">
                 <button type="button" class="btn btn-info">OSDE</button>
               </li>
-              <li class="list-group-item">
+              <li class="list-group-item custom-list-item">
+                <button type="button" class="btn btn-info">Empresas</button>
+              </li>
+              <li class="list-group-item custom-list-item">
                 <button type="button" class="btn btn-info">Servicios</button>
               </li>
             </ul>
+          </div>
         </div>
       </div>
       <div class="accordion-item">
@@ -129,23 +144,28 @@
             Gas
           </button>
         </h2>
-        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
-          aria-labelledby="panelsStayOpen-headingThree">
+
+        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
           <div class="accordion-body">
             <ul class="list-group">
-              <li class="list-group-item">
+              <li class="list-group-item custom-list-item">
                 <button type="button" class="btn btn-info">Información general</button>
               </li>
-              <li class="list-group-item">
+              <li class="list-group-item custom-list-item">
+                <button type="button" class="btn btn-info">OACE</button>
+              </li>
+              <li class="list-group-item custom-list-item">
                 <button type="button" class="btn btn-info">OSDE</button>
               </li>
-              <li class="list-group-item">
+              <li class="list-group-item custom-list-item">
+                <button type="button" class="btn btn-info">Empresas</button>
+              </li>
+              <li class="list-group-item custom-list-item">
                 <button type="button" class="btn btn-info">Servicios</button>
               </li>
             </ul>
-        </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
