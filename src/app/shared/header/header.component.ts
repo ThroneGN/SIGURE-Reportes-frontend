@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
 
   public theme_Service = inject(ThemeService);
 
@@ -38,5 +38,6 @@ export class HeaderComponent implements OnInit{
   toggleDarkMode() {
     const element = document.querySelector('html');
     element!.classList.toggle('my-app-dark');
-}
+  }
+  
 }

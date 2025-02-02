@@ -12,11 +12,11 @@
   <!-- <input id="fechaFinInput" type="text" [(ngModel)]="fechaFin" (input)="updateUrl()" placeholder="Escribe la Fecha Fin" /> -->
 
   <label class="me-2 ms-1" for="">Desde: </label>
-  <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" dateFormat="yy-mm-dd"
+  <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" dateFormat="dd/mm/yy"
     [(ngModel)]="startDate" (ngModelChange)="onDateChange()"></p-datepicker>
 
   <label class="me-2 ms-5" for="">Hasta: </label>
-  <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" dateFormat="yy-mm-dd"
+  <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" dateFormat="dd/mm/yy"
     [(ngModel)]="endDate" (ngModelChange)="onDateChange()"></p-datepicker>
 
   <div class="card mt-4">
@@ -33,7 +33,7 @@
               </p-inputicon>
               <input pInputText type="text" [(ngModel)]="searchValue"
                 (input)="ElectricityGeneral.filterGlobal(searchValue, 'contains')" placeholder="Buscar..." />
-                <p-button type="button" icon="pi pi-refresh" (click)="clear()" text />
+                <p-button class="ms-2" type="button" icon="pi pi-refresh" (click)="clear()" text />
             </p-iconfield>
           </div>
         </div>

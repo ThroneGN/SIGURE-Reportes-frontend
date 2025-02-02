@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ThemeService } from './theme.service';
+import { YourResolverService } from './your-resolver.service';
 
-describe('ThemeService', () => {
-  let service: ThemeService;
+describe('YourResolverService', () => {
+  let service: YourResolverService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ThemeService);
+    service = TestBed.inject(YourResolverService);
   });
 
   it('should be created', () => {

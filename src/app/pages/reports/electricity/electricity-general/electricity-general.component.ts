@@ -21,13 +21,15 @@ import { Electricity } from '../../../../interfaces/electricity';
 import { ElectricityGeneralService } from '../../../../services/electricity/electricity-general.service';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { stat } from 'node:fs';
+import { FormatDateService } from '../../../../services/format-date.service';
 
 registerLocaleData(localeEs);
 
 @Component({
   selector: 'app-electricity-general',
-  imports: [DatePickerModule, TableModule, Tag, ButtonModule, IconField, IconFieldModule, InputIcon,
-    CommonModule, MultiSelectModule, InputTextModule, DropdownModule, Slider, ProgressBar, FluidModule, FormsModule],
+  imports: [DatePickerModule, TableModule, ButtonModule, IconField, IconFieldModule, InputIcon,
+    CommonModule, MultiSelectModule, InputTextModule, DropdownModule, FluidModule, FormsModule],
   templateUrl: './electricity-general.component.html',
   styleUrl: './electricity-general.component.css'
 })
@@ -38,6 +40,7 @@ export class ElectricityGeneralComponent implements OnInit {
   private _electricityService: ElectricityGeneralService = inject(ElectricityGeneralService);
   private _activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   private _router: Router = inject(Router);
+  private _formatDate: FormatDateService = inject(FormatDateService)
 
   loading: boolean = false;
   listElectricity: Electricity[] = [];
@@ -46,19 +49,23 @@ export class ElectricityGeneralComponent implements OnInit {
   InitDate: string = '';
   FinalDate: string = '';
 
-  startDate: string = '';
-  endDate: string = '';
+  startDate?: Date;
+  formattedStartDate: string = '';
+  endDate?: Date;
+  formattedEndDate: string = '';
 
   filteredElectricity: any[] = [];
 
   urlInput: string = '';
 
+  isOffcanvasOpen = false;
 
   ngOnInit(): void {
     this.InitDate = this._activatedRoute.snapshot.paramMap.get('InitDate')!;
     this.FinalDate = this._activatedRoute.snapshot.paramMap.get('FinalDate')!;
 
     this.getAllElectricity(this.InitDate, this.FinalDate);
+
   }
 
   getAllElectricity(InitDate: string, FinalDate: string): void {
@@ -69,29 +76,25 @@ export class ElectricityGeneralComponent implements OnInit {
     });
   }
 
-  updatePage(){
-    location.reload();
-  }
-
   onDateChange() {
     if (this.startDate && this.endDate) {
-      const newUrl = `electricidadgeneral/${this.startDate}/${this.endDate}`;
-      history.pushState(null, '', newUrl);
+      this.formattedStartDate = this._formatDate.formatDate(this.startDate);
+      this.formattedEndDate = this._formatDate.formatDate(this.endDate);
+
+      const newUrl = `electricityGeneral/${this.formattedStartDate}/${this.formattedEndDate}`;
       this._router.navigateByUrl(newUrl);
+      this.getAllElectricity(this.formattedStartDate, this.formattedEndDate);
+    } else {
+      console.log('Fechas no definidas:', this.startDate, this.endDate);
     }
   }
 
-  clear() {
-    this.table.clear();
-    this.table.reset();
-    this.searchValue = '';
-    // window.location.reload();
-  }
-
-  adjustDate(electricityConsumption: { Fecha: string | number | Date; }) {
-    const date = new Date(electricityConsumption.Fecha);
-    return new Date(date.getTime() + date.getTimezoneOffset() * 60000);
-  }
+  // formatDate(date: Date): string {
+  //   const year = date.getFullYear();
+  //   const month = String(date.getMonth() + 1).padStart(2, '0'); // Meses de 0-11
+  //   const day = String(date.getDate()).padStart(2, '0');
+  //   return `${year}-${month}-${day}`; // Formato yy-mm-dd
+  // }
 
   // exportToPDF() {
   //   const doc = new jsPDF('l', 'pt');
@@ -131,5 +134,13 @@ export class ElectricityGeneralComponent implements OnInit {
   //   XLSX.utils.book_append_sheet(wb, ws, 'Hoja1');
   //   XLSX.writeFile(wb, 'Consumo de electricidad de TAXISCUBA.xlsx');
   // }
+
+  clear() {
+    this.table.clear();
+    this.table.reset();
+    this.searchValue = '';
+    // window.location.reload();
+  }
+
 
 }
